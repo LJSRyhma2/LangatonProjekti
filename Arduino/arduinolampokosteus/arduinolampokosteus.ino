@@ -1,3 +1,7 @@
+static volatile int16_t lukko = 0;
+
+
+
 //-----------------------LAMPOTILAN--------------------------//
 int val;
 int tempPin = A1;
@@ -7,9 +11,7 @@ int readIndex = 0;              // the index of the current reading
 float total = 0;                  // the running total
 float average = 0;                // the average
 
-
 //-----------------------KOSTEUDEN---------------------------//
-
 
 int analogVal = A0;
 int taul[125];
@@ -23,7 +25,6 @@ float kosteus;
 float kalibroitu;
 float exponential;
 int analogArvo;
-
 
 void setup() 
 {
@@ -43,30 +44,25 @@ analogWrite(5,128); //980Hz PWM, pin 5
 interrupts();
 }
 
-
 void loop() 
 {
   
   delay(1000);
-if (kalle == 2)
+if (lukko == 2)
 {
-  kalle = 3;
+  lukko = 3;
 }
-if (kalle == 0)
+if (lukko == 0)
 {
-  kalle = 1;
+  lukko = 1;
 }
 
 
 
 
-
-
-
-
-if (kalle == 1)
+if (lukko == 1)
 {
- //delay (300);
+
 exponential = pow (arvo, -0.685);
  kalibroitu = 3314.4 * exponential ;   
  if (arvo>= ad[0]) kosteus=kost[0]-(kost[0]-0)*(arvo-ad[0])/(1023-ad[0]);
@@ -102,46 +98,31 @@ else if (arvo<ad[28] && arvo>=ad[29]) kosteus=kost[29]-(kost[29]-kost[28])*(arvo
 else if (arvo<ad[29] && arvo>=ad[30]) kosteus=kost[30]-(kost[30]-kost[29])*(arvo-ad[30])/(ad[29]-ad[30]);
 else if (arvo<ad[30] && arvo>=ad[31]) kosteus=kost[31]-(kost[31]-kost[30])*(arvo-ad[31])/(ad[30]-ad[31]);
 
-
  else kosteus = 100 - (100-kost[31])*(arvo-0)/(ad[31]-0);
  delay (5);
- //Serial.print("Kosteus on ");
- //Serial.print(kosteus);
- //Serial.print(kalibroitu);
- //Serial.println(" %\n");
- //Serial.print("Kosteus on ");
  Serial.print(kosteus);
- //Serial.print("%");
  Serial.print(",");
- kalle = 2;
-// delay(1000);
+ lukko = 2;
+
 }
 
-
- if (kalle == 3)
+ if (lukko == 3)
  {
  
-    //Serial.print("Keskiarvo: ");
     Serial.println(average);
-    kalle = 0;
-    //delay(1000);
-    kalle = 0;
+    lukko = 0;
+    delay(300000);
  }
  
 
 
 
 
-
-
-
-
 }
-
 
 ISR(ADC_vect)
   {
-  if  (kalle == 0)
+  if  (lukko == 0)
    {
     
     analogVal = ADCL | (ADCH << 8);
@@ -164,17 +145,13 @@ ISR(ADC_vect)
   
 
 
-
-
-  else if (kalle == 2)
+  else if (lukko == 2)
   {
   val = ADCL | (ADCH << 8);
 // val = analogRead(tempPin);
 
-
 float mv = ( val/1024.0)*5000; 
 float cel = 0.1014 * mv + 0.8622;
-
 
 // subtract the last reading:
   total = total - readings[readIndex];
@@ -186,8 +163,6 @@ float cel = 0.1014 * mv + 0.8622;
   readIndex = readIndex + 1;
 
 
-
-
   // if we're at the end of the array...
   if (readIndex >= numReadings) 
       {
@@ -195,13 +170,9 @@ float cel = 0.1014 * mv + 0.8622;
       readIndex = 0;
       average = total / numReadings;
 
-
       }
-
 
   ADMUX &= B11111110;
   }
 
-
   }
-
