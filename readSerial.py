@@ -142,8 +142,10 @@ while 1:
         longitudeDeg = longitude_degrees
         longitude = longitude_minutes
 
-        #print latitude
-        #print longitude
+        print latitudeDeg
+        print latitude
+        print longitudeDeg
+        print longitude
 
 
         kosteus = ser.readline()
@@ -153,8 +155,8 @@ while 1:
         latitudeDeg = int(latitudeDeg)
         latitude = float(latitude)
 
-        longitudeDeg = int(latitudeDeg)
-        longitude = float(latitude)        
+        longitudeDeg = int(longitudeDeg)
+        longitude = float(longitude)        
 
         kosteus = float(kosteus)
     #   lampo = float(lampo)
