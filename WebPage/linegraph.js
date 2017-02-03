@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
                        $.getJSON("test.php", function (result) {
-                            console.log(result);
+                           // console.log(result);
 
 
                             var time = []; 
@@ -53,6 +53,54 @@ $(document).ready(function() {
                                 });
 
      });
+
+	function gmap(){
+
+		            $.getJSON("test.php", function (result1) {
+                            console.log(result1);
+    
+    
+                            var latDeg = []; 
+                            var latitude = []; 
+                            var longDeg = []; 
+                            var longitude = []; 
+    
+                            for (var i in result1){
+                                latDeg.push(result1[i].slice(3,4).toString());
+                                latitude.push(result1[i].slice(4,5).toString());
+                                longDeg.push(result1[i].slice(5,6).toString());
+                                longitude.push(result1[i].slice(6,7).toString());
+                                        }
+    
+                        var  north = latDeg.pop() + latitude.pop();
+                        var  east = longDeg.pop() + longitude.pop();
+    
+                        console.log(north);
+                        console.debug(east);
+    
+				
+
+				      
+        				var locNow = {lat: north, lng: east};
+        					var map = new google.maps.Map(document.getElementById('map'), {
+         					zoom: 4,
+          					center: locNow
+        				});
+
+        				var marker = new google.maps.Marker({
+          					position: locNow,
+				        	map: map
+				        });
+						
+				
+					
+
+        			});
+				
+
+		};
+
+
  });
 
 

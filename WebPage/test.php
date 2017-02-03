@@ -10,7 +10,7 @@
 
         $username = "root";
 
-        $password = "ryhma7";
+        $password = "raspberry";
 
         $dbname = "projekti";
 
@@ -35,11 +35,11 @@
 
 
                         $data_points = array();
-                        $result = mysqli_query($mysqli,"SELECT * FROM mittaukset order by id ");
+                        $result = mysqli_query($mysqli,"SELECT * FROM Mittaukset order by id ");
 
                         while($row = mysqli_fetch_array($result))
                         {        
-                            $point = array($row['aika'],$row['lampo'],$row['kosteus']);
+                            $point = array($row['aika'],$row['kosteus'],$row['latitudeDegree'],$row['latitude'],$row['longitudedegree'],$row['longitude']);
                             array_push($data_points, $point);        
                         }
 
