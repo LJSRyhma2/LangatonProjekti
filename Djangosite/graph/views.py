@@ -6,11 +6,11 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the graph index.")
+	return render(request, 'graph/index.html')
 	
 def kosteus(request):
-	return HttpResponse("Kosteusnäkymä")
+	return render(request, 'graph/kosteus.html')
 	
 def kartta(request):
-	return HttpResponse("Karttanäkymä")
+	return render(request, 'graph/kartta.html')
 	
