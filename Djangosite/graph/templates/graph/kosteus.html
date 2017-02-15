@@ -1,1 +1,3 @@
-<h1>Kosteusnäkymä</h1>
+{% for mittaukset in mittauslist %}
+    {{ mittaukset.kosteus }}
+{% endfor %}

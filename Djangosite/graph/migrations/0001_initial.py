@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Mittausdata',
+            name='Mittaukset',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('aika', models.DateTimeField(auto_now_add=True)),

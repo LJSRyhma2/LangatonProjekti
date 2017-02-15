@@ -1,5 +1,42 @@
-<h1>BEEPBOOP TESTING TESTING</h1>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'graph/style.css' %}" />
 
-<p>hello my baby hello my honey</p>
+<!doctype html>
+<meta charset=utf-8>
+<html>
+	<head>
+		<title>Rasp netti sivu </title>
+	</head>
+		
+	<body>
+		<header>
+			<nav>
+				<h1>Langaton Projekti Ryhma 2 Kuvaus</h1>
+				<ul>
+					<li><a href="{% url 'index' %}">Kuvaus</a></li>
+					<li><a href="{% url 'kartta' %}">Kartta</a></li>
+					<li><a href="{% url 'kosteus' %}">Kosteus</a></li>
+				</ul>
+			</nav>
+		</header>
+		<p>
+			<div class="row">
+				<div class="col">Teemme sovelluksen, joka ottaa Arduinolta kosteuden ja antaa ne langattomasti Raspberrylle Bluetoothin kautta, joka tallentaa ne tietokantaan. Raspberry saa GPS-shieldiltä koordinaatit, ja tallentaa ne tietokantaan ja näyttää nettisivulla.
+				<br></br>
+				
+				
+				</div>
+			</div>
+		
+				<div id="googleMap" style="width:100%;height:400px;"></div>
 
-<p>Haista paska</p>
+	
+
+		</p>
+		
+	
+		
+		<div class="footer">Ryhma 2: Jere Kylätie, Teemu Kolu, Aku Jaakola</div>
+	</body>
+	
+</html>
