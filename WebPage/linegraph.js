@@ -54,7 +54,7 @@ $(document).ready(function() {
 
      });
 
-	function gmap(){
+	window.initMap = function(){
 
 		            $.getJSON("test.php", function (result1) {
                             console.log(result1);
@@ -66,24 +66,46 @@ $(document).ready(function() {
                             var longitude = []; 
     
                             for (var i in result1){
-                                latDeg.push(result1[i].slice(3,4).toString());
-                                latitude.push(result1[i].slice(4,5).toString());
-                                longDeg.push(result1[i].slice(5,6).toString());
-                                longitude.push(result1[i].slice(6,7).toString());
-                                        }
+                                latDeg.push(result1[i].slice(2,3).toString());
+                                latitude.push(result1[i].slice(3,4).toString());
+                                longDeg.push(result1[i].slice(4,5).toString());
+                                longitude.push(result1[i].slice(5,6).toString());
+        
+
+
+                                }
+
+
+			var last_NorthDeg =  latDeg[latDeg.length - 1]; 
+                        var last_Northlat =  latitude[latitude.length - 1];
+
+                        var last_eastDeg =  longDeg[longDeg.length - 1];
+                        var last_eastLong = longitude[longitude.length - 1];
+
+
     
-                        var  north = latDeg.pop() + latitude.pop();
-                        var  east = longDeg.pop() + longitude.pop();
-    
-                        console.log(north);
-                        console.debug(east);
+                        var  northDeg= parseFloat(last_NorthDeg);
+			var  northLat= parseFloat(last_Northlat);
+
+                        var  eastDEG = parseFloat(last_eastDeg);
+			var  eastLo =  parseFloat(last_eastLong);
+				
+
+	
+				
+
+			console.log(northDeg, northLat);
+			console.log(eastDEG, eastLo);
     
 				
 
-				      
-        				var locNow = {lat: north, lng: east};
-        					var map = new google.maps.Map(document.getElementById('map'), {
-         					zoom: 4,
+					var locNow = {lat: northDeg,northLat, lng: eastDEG,eastLo};
+        				
+					
+
+
+					var map = new google.maps.Map(document.getElementById('map'), {
+         					zoom: 11,
           					center: locNow
         				});
 

@@ -10,7 +10,7 @@
 
         $username = "root";
 
-        $password = "salasana";
+        $password = "raspberry";
 
         $dbname = "projekti";
 
