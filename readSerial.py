@@ -8,7 +8,7 @@ import smbus
 
 
 connected = True
-ser = serial.Serial('/dev/ttyACM0', 9600)
+ser = serial.Serial('/dev/rfcomm1', 115200)
 
 
 dbc = ("localhost", "root", "raspberry", "projekti")
@@ -134,14 +134,14 @@ while 1:
         longitude_direction = chr(get_single(32))
      #   print 'longitude: %.0f %.5f %s' %(longitude_degrees,longitude_minutes,longitude_direction)
 
-        time.sleep(1)                                                                                                                  
+        #time.sleep(1)                                                                                                                  
 
 
         latitudeDeg = latitude_degrees
         latitude = latitude_minutes
         longitudeDeg = longitude_degrees
         longitude = longitude_minutes
-
+   
         print latitudeDeg
         print latitude
         print longitudeDeg
@@ -162,7 +162,7 @@ while 1:
     #   lampo = float(lampo)
         
     #   print "Huoneen lampo: %.2f"  % lampo
-        print "Huoneen kosteus: %.2f" % kosteus
+        print "Huoneen kosteus: %.2f" %kosteus
         
            
 
